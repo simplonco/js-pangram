@@ -7,14 +7,20 @@
 'use strict';
 
 var Pangram = function(candidate) {
-
-  return {
-    isPangram: function () {
-    //
-    // YOUR CODE GOES HERE
-    //
-    }
-  };
+    var notAlpha = /[^a-z]+/gi,
+        ALPHA_LENGTH = 26,
+        cleaned,
+        unique;
+    unique = {};
+    cleaned = (candidate.replace(notAlpha, '')).toLowerCase();
+    cleaned.split('').forEach(function(el) {
+        unique[el] = true;
+    });
+    return {
+        isPangram: function() {
+            return Object.keys(unique).length === ALPHA_LENGTH;
+        }
+    };
 };
 
 module.exports = Pangram;
